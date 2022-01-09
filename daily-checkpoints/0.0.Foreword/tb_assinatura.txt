@@ -1,0 +1,5 @@
+﻿tb_assinatura
+status assinatura: {ativo, cancelado}
+data criação
+data cancelamento fica nula caso ativo
+id_assinatura
