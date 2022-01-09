@@ -57,3 +57,11 @@ De acordo com uma das regras de modelagem DV nós temos que modelar transações
 ![](../src/img/vendas_DV.png)
 
 Lembrando que podemos conectar `Satelites` em `Hubs` ou `Links`, porém neste cenario, estamos olhando os detalhes da transação, por tanto nossa tabela `Satelite` está conectada na transação ou `Transaction Link`.
+
+### Vendo os dados de transação no modelo DV.
+
+Agora, como a sorveteria é topzeira nós vamos nos tornar clientes regulares e voltar lá todos os dias e nossa simples ida irá gerar dados importantes de transação no sistema OLTP da rede de sorveterias. Imagine estes eventos:
+
+- __Primeiro veremos como seria a primeira compra e como estes dados de compra seria distribuidos em nosso modelo:__
+
+![](../src/img/evento-1-compra-dv.png)
