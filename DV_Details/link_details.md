@@ -39,3 +39,21 @@ _Imagine o cenário acima como uma loja de eletronicos vendendo um celular ou um
 No caso 2, claramente quando pensamos na modelagem DV, nós precisamos de uma `Standard Link` entre estas duas entidades:
 
 ![](../src/img/hub_customer_link.png)
+
+_____
+
+# Detalhamento de transações
+### __Agora que analisamos parcialmente um modelo e entendemos o papel de alguns relacionamentos e como são tratados ao pensar na modelagem DV, vamos à alguns detalhes:__
+
+__Estudo de caso:__
+
+Existe uma sorveteria em uma rua qualquer e nós queremos ir até lá comprar sorvete de ninho trufado. 
+> Esta simples ação cria entidades em um banco de dados desta empresa de sorvetes, nós temos `Clientes`, `Loja` e `Produto`, onde a interação destas 3 cria uma transação de vendas.
+
+![](../src/img/vendas-entidades.png)
+
+De acordo com uma das regras de modelagem DV nós temos que modelar transações como ``Links``, e para faze-lo, criaremos 3 ``hubs`` para as entidades mencionadas anteriormente e uma `Link table` para o evento de vendas, incluindo todas as colunas chave que são relevantes para os ``hubs`` e as outras colunas obrigatórias.
+
+![](../src/img/vendas_DV.png)
+
+Lembrando que podemos conectar `Satelites` em `Hubs` ou `Links`, porém neste cenario, estamos olhando os detalhes da transação, por tanto nossa tabela `Satelite` está conectada na transação ou `Transaction Link`.
