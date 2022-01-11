@@ -65,3 +65,35 @@ Agora, como a sorveteria é topzeira nós vamos nos tornar clientes regulares e 
 - __Primeiro veremos como seria a primeira compra e como estes dados de compra seria distribuidos em nosso modelo:__
 
 ![](../src/img/evento-1-compra-dv.png)
+
+O dado seria distribuido desta forma no modelo, trazendo informações descritivas para a tabela `Satelite`. Mas e se formos na sorveteria todos os dias?
+
+__Atenção! Tabelas `Satelites` guardam histórico, entretanto ela guarda histórico quando há atualizações nas características de uma `business key` ou em relacionamentos.__
+
+Se vamos todos os dias podemos seguir então o caminho de atualizar o registro da transação, seria mais facil, certo?
+
+__Errado!__
+
+Vamos deixar bem claro que __Transações não são atualizadas em `Standard link`__. E para esclarecer, pense em uma passagem de avião. Se você compra passagens ida e volta para Salvador, porque gostaria de conhecer o nordeste e depois muda de ideia e prefere iniciar a viagem em Fortaleza e finalizar em Salvador, se formos na compahia aerea eles não irão atualizar nossa passagem. O mais provável de ocorrer é, cancelarão a passagem de ida e irão gerar uma nova passagem para Fortaleza.
+
+Então para guardar alterações, vamos precisar fazer algumas mudanças na estrutura da tabela `Link`.
+
+### Non Historized Links
+
+Uma das possibilidades é utilizarmos a estrutura de uma `Link` não-histórica, (em livre tradução). Como veremos abaixo uma coluna é adicionada à estrutura da `Link Table`:
+
+| LINK_Vendas       | 
+|-------------------|
+| HK_Vendas_ID PK   | 
+| HK_Cliente_ID FK  | 
+| HK_Produto_ID FK  | 
+| HK_Loja_ID FK     | 
+| __Vendas_ID__     |
+| LOAD_DTS          | 
+| REC_SRC           | 
+|                   |
+
+Inserindo o ID da transação, nós tornamos cada transação unica, não sendo necessário armazenar histórico.
+
+>Entretanto, armazenar dados na `Link`, como o Id de vendas, ou qualquer tipo de dado transacional aumenta a complexidade de manutenção do DV, pois transações não podem ser atualizadas.
+
